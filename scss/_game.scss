@@ -1,0 +1,105 @@
+h1 {
+    font-size: 5em;
+}
+
+form {
+    margin: 20px 0;
+    font-size: 2em;
+    input {
+        font-size: inherit;
+        padding: 5px 15px;
+        border-radius: 10px;
+        background: var(--color-2);
+        color: var(--color-3);
+    }
+}
+
+#btn-valid {
+    font-size: 1.8rem;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: pointer;
+
+    &:hover {
+        background: rgb(63, 62, 62);
+        color: silver;
+    }
+}
+
+#title {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100px;
+    background: var(--primary-color);
+    box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
+}
+
+#game {
+    display: grid;
+    grid-template-columns: repeat(2, 49%);
+    gap: 10px;
+    margin-top: 50px;
+}
+
+#mot,
+#dessin {
+    background: var(--primary-color);
+    border: none;
+    border-radius: 10px;
+    height: 400px;
+}
+
+#mot {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+#clavier {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    justify-content: space-around;
+    background: var(--primary-color);
+    align-items: center;
+    height: 250px;
+    border: none;
+    border-radius: 10px;
+}
+
+#text-proposition {
+    color: var(--color-3);
+}
+
+.key,
+.clicked {
+    display: flex;
+    margin: 0 10px;
+    height: 50px;
+    font-size: 2em;
+    font-weight: bold;
+    justify-content: center;
+    align-items: center;
+    background: var(--color-2);
+    color: var(--color-3);
+    border-radius: 10px;
+}
+
+.key:hover {
+    cursor: pointer;
+    background: rgb(108, 106, 109);
+    color: silver;
+}
+
+.tiret {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 3em;
+    height: auto;
+}
