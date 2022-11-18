@@ -71,6 +71,13 @@ form {
     border-radius: 10px;
 }
 
+#dessin {
+    display: flex;
+    justify-content: center;
+
+    // max-width: ;
+}
+
 #text-proposition {
     color: var(--color-3);
 }
