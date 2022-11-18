@@ -112,8 +112,6 @@ form input {
 #dessin {
   display: flex;
   justify-content: center;
-  border: none;
-  border-radius: 15px;
 }
 
 #text-proposition {
