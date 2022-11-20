@@ -12,8 +12,18 @@ body {
     background: var(--color-1);
 }
 
-html {
+.btn {
+    width: 200px;
+    height: 40px;
+    border: none;
+    border-radius: 10px;
+    &:hover {
+        font-weight: bold;
+
+        cursor: pointer;
+    }
 }
+
 .container {
     width: 1200px;
     margin: 0 auto;
@@ -23,10 +33,30 @@ html {
     display: grid;
 }
 
-.text-center {
-    text-align: center;
+.flex {
+    display: flex;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.flex-row {
+    flex-direction: row;
 }
 
 .justify-between {
+    justify-content: space-between;
+}
+
+.justify-arround {
     justify-content: space-around;
+}
+
+.align-center {
+    align-items: center;
+}
+
+.text-center {
+    text-align: center;
 }

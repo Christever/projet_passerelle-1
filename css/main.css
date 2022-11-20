@@ -3,6 +3,9 @@
   --color-1: #3f3b6c;
   --color-2: #624f82;
   --color-3: #a3c7d6;
+  --color-4: #ff6464;
+  --color-5: #b6e388;
+  --color-6: #829460;
 }
 
 * {
@@ -20,6 +23,17 @@ body {
   background: var(--color-1);
 }
 
+.btn {
+  width: 200px;
+  height: 40px;
+  border: none;
+  border-radius: 10px;
+}
+.btn:hover {
+  font-weight: bold;
+  cursor: pointer;
+}
+
 .container {
   width: 1200px;
   margin: 0 auto;
@@ -29,12 +43,32 @@ body {
   display: grid;
 }
 
-.text-center {
-  text-align: center;
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.flex-row {
+  flex-direction: row;
 }
 
 .justify-between {
+  justify-content: space-between;
+}
+
+.justify-arround {
   justify-content: space-around;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
 }
 
 h1 {
@@ -116,6 +150,12 @@ form input {
 
 #text-proposition {
   color: var(--color-3);
+}
+
+#end-game {
+  height: 270px;
+  margin-top: 50px;
+  border-radius: 15px;
 }
 
 .key,

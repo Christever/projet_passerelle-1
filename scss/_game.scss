@@ -74,12 +74,16 @@ form {
 #dessin {
     display: flex;
     justify-content: center;
-
-    // max-width: ;
 }
 
 #text-proposition {
     color: var(--color-3);
+}
+
+#end-game {
+    height: 270px;
+    margin-top: 50px;
+    border-radius: 15px;
 }
 
 .key,

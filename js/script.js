@@ -27,17 +27,30 @@ const clavier = [
     "n",
 ];
 
+// *******************************
+//           Evennements
+// *******************************
+
+// *******************************
+//           Variables
+// *******************************
+
 const IDclavier = document.getElementById("clavier");
 const IDmot = document.getElementById("mot");
 const IDProposition = document.getElementById("proposition");
 const IDBtn_valid = document.getElementById("btn-valid");
+const IDDessin = document.getElementById("dessin");
+const IDText_game = document.getElementById("text-game");
+const IDFormulaire = document.getElementById("formulaire");
+const IDEnd_game = document.getElementById("end-game");
 
-console.log(IDBtn_valid);
+const maxCoups = 8;
 
-let mot = "Information".toLowerCase();
+let mot = "Test".toLowerCase();
 let motCache = Array();
-console.log(motCache);
 let lettreClicked;
+
+let nbCoups = 1;
 
 // *******************************
 //           Fonctions
@@ -45,7 +58,21 @@ let lettreClicked;
 
 function initialise() {
     for (const {} of mot) motCache.push("_");
-    console.log(motCache);
+    IDBtn_valid.addEventListener("click", (e) => {
+        e.preventDefault();
+        let proposition = IDProposition.value.toLowerCase();
+
+        if (proposition === mot) {
+            victoire();
+        } else {
+            $(IDProposition).val("");
+            nbCoups++;
+            console.log(nbCoups);
+            dessinePendu();
+        }
+    });
+    $(IDEnd_game).css("display", "none");
+    $(IDFormulaire).css("display", "");
 }
 
 function afficherClavier() {
@@ -61,7 +88,6 @@ function afficherClavier() {
     key.forEach((element) => {
         element.addEventListener("click", (e) => {
             lettreClicked = element.innerHTML;
-
             $(element).removeClass("key");
             $(element).addClass("clicked");
             verifierLettre(element);
@@ -81,12 +107,16 @@ function verifierLettre(element) {
     }
 
     if (lettreOK) {
-        $(element).css("background-color", "green");
+        $(element).css("background-color", "var(--color-5)");
     } else {
-        $(element).css("background-color", "red");
+        $(element).css("background-color", "var(--color-4)");
+        nbCoups++;
+        dessinePendu();
     }
-    console.log(motCache.join(""));
-    verifierMot(motCache.join(""));
+    // verifierMot(motCache.join(""));
+    if (motCache.join("") === mot) {
+        victoire();
+    }
 }
 
 function afficherTiret() {
@@ -99,21 +129,64 @@ function afficherTiret() {
 }
 
 function verifierMot(motAVerifier) {
-    console.log(motAVerifier);
-    if (motAVerifier == mot) {
-        console.log("VICTOIRE !!");
+    if (motAVerifier === mot) {
+        victoire();
+    } else {
+        dessinePendu();
     }
+}
+
+function victoire() {
+    $(IDFormulaire).css("display", "none");
+    // IDFormulaire.style.display = "none";
+
+    $(IDEnd_game).css("display", "");
+
+    $(IDEnd_game).addClass("flex flex-column justify-arround align-center");
+    $(IDEnd_game).css("background-color", "var(--color-5)");
+
+    // IDEnd_game.style.backgroundColor = "green";
+
+    $(IDEnd_game).html(
+        `<h2>Vous avez gagné</h2> <button class="btn" id="btn-start">Recommencer</button>`
+    );
+    $(IDEnd_game).css("color", "var(--color-1");
+
+    document.getElementById("btn-start").addEventListener("click", () => {
+        location.reload();
+    });
+}
+
+function defaite() {
+    $(IDFormulaire).css("display", "none");
+    $(IDEnd_game).css("display", "");
+    $(IDEnd_game).addClass("flex flex-column justify-arround align-center");
+    $(IDEnd_game).css("background-color", "var(--color-4)");
+
+    $(IDEnd_game).html(
+        `<h2>Vous avez perdu</h2><h3>Le mot caché était : ${mot}</h3> <button class="btn" id="btn-start">Recommencer</button>`
+    );
+
+    $(IDEnd_game).css("color", "var(--color-1");
+
+    document.getElementById("btn-start").addEventListener("click", () => {
+        location.reload();
+    });
+}
+
+function dessinePendu() {
+    // $(document).ready(function () {
+    let url = "../images/pendu-" + nbCoups + ".png";
+    $("img").attr("src", url);
+    if (nbCoups == maxCoups) {
+        defaite();
+    }
+    // });
 }
 
 // *******************************
 //           Evenements
 // *******************************
-
-IDBtn_valid.addEventListener("click", (e) => {
-    e.preventDefault();
-    let proposition = IDProposition.value.toLowerCase();
-    verifierMot(proposition);
-});
 
 // *******************************
 //           Jeu
