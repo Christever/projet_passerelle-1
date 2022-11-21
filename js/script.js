@@ -208,7 +208,7 @@ function dessinePendu() {
         numeroImg++;
         let url = "../images/pendu-" + numeroImg + ".png";
         $("img").attr("src", url);
-        if (nbCoups == maxCoups) {
+        if (numeroImg == maxCoups) {
             defaite();
         }
     });
