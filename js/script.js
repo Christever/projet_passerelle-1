@@ -175,7 +175,7 @@ function victoire() {
     // IDEnd_game.style.backgroundColor = "green";
 
     $(IDEnd_game).html(
-        `<h2>Vous avez gagné</h2> <button class="btn" id="btn-start">Recommencer</button>`
+        `<h2>Vous avez gagné en ${nbCoups} coups</h2> <button class="btn" id="btn-start">Recommencer</button>`
     );
     $(IDEnd_game).css("color", "var(--color-1");
 
