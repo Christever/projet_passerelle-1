@@ -46,15 +46,41 @@ const IDEnd_game = document.getElementById("end-game");
 
 const maxCoups = 8;
 
-let mot = "Test".toLowerCase();
+const url = "../data/mots.json";
+
+// let mot = "Test".toLowerCase();
+let mot;
 let motCache = Array();
 let lettreClicked;
 
+let donnees;
 let nbCoups = 1;
 
 // *******************************
 //           Fonctions
 // *******************************
+
+async function motAleatoire() {
+    const requete = await fetch(url, {
+        method: "GET",
+    });
+
+    if (!requete.ok) {
+        alert("Un problème est survenu");
+    } else {
+        donnees = await requete.json();
+
+        mot =
+            donnees[
+                Math.floor(Math.random() * donnees.length)
+            ].MOT.toLowerCase();
+
+        console.log(mot);
+        initialise();
+        afficherClavier();
+        afficherTiret();
+    }
+}
 
 function initialise() {
     for (const {} of mot) motCache.push("_");
@@ -175,23 +201,23 @@ function defaite() {
 }
 
 function dessinePendu() {
-    // $(document).ready(function () {
-    let url = "../images/pendu-" + nbCoups + ".png";
-    $("img").attr("src", url);
-    if (nbCoups == maxCoups) {
-        defaite();
-    }
-    // });
+    $(document).ready(function () {
+        let url = "../images/pendu-" + nbCoups + ".png";
+        $("img").attr("src", url);
+        if (nbCoups == maxCoups) {
+            defaite();
+        }
+    });
 }
 
-// *******************************
-//           Evenements
-// *******************************
+function start() {
+    motAleatoire();
+}
 
 // *******************************
 //           Jeu
 // *******************************
 
-initialise();
-afficherClavier();
-afficherTiret();
+window.onload = () => {
+    start();
+};
