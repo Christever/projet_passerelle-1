@@ -1,3 +1,52 @@
 @import "root";
 @import "general";
 @import "game.scss";
+
+@media all and (max-width: 1450px) {
+    .container {
+        width: 750px;
+    }
+
+    #title {
+        display: none;
+    }
+
+    #game {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #mot {
+        height: 200px;
+    }
+
+    #dessin {
+        height: 300px;
+        img {
+            height: 300px;
+        }
+    }
+}
+
+@media all and (max-width: 750px) {
+    .container {
+        width: 450px;
+    }
+
+    form {
+        font-size: 1em;
+
+        input {
+            font-size: inherit;
+        }
+    }
+
+    #btn-valid {
+        font-size: 0.75em;
+    }
+
+    #text-proposition {
+        display: flex;
+        align-items: center;
+    }
+}
