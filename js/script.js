@@ -163,6 +163,7 @@ function verifierMot(motAVerifier) {
 }
 
 function victoire() {
+    $(IDmot).text(mot).addClass("motDecouvert");
     $(IDFormulaire).css("display", "none");
     // IDFormulaire.style.display = "none";
 
