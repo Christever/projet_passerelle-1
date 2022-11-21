@@ -54,7 +54,8 @@ let motCache = Array();
 let lettreClicked;
 
 let donnees;
-let nbCoups = 1;
+let nbCoups = 0;
+let numeroImg = 1;
 
 // *******************************
 //           Fonctions
@@ -84,15 +85,16 @@ async function motAleatoire() {
 
 function initialise() {
     for (const {} of mot) motCache.push("_");
+
     IDBtn_valid.addEventListener("click", (e) => {
         e.preventDefault();
         let proposition = IDProposition.value.toLowerCase();
-
+        nbCoups++;
         if (proposition === mot) {
             victoire();
         } else {
             $(IDProposition).val("");
-            nbCoups++;
+
             console.log(nbCoups);
             dessinePendu();
         }
@@ -116,7 +118,9 @@ function afficherClavier() {
             lettreClicked = element.innerHTML;
             $(element).removeClass("key");
             $(element).addClass("clicked");
+            nbCoups++;
             verifierLettre(element);
+            console.log(nbCoups);
         });
     });
 }
@@ -131,15 +135,13 @@ function verifierLettre(element) {
             motCache[index] = lettreClicked;
         }
     }
-
     if (lettreOK) {
         $(element).css("background-color", "var(--color-5)");
     } else {
         $(element).css("background-color", "var(--color-4)");
-        nbCoups++;
         dessinePendu();
     }
-    // verifierMot(motCache.join(""));
+
     if (motCache.join("") === mot) {
         victoire();
     }
@@ -203,7 +205,8 @@ function defaite() {
 
 function dessinePendu() {
     $(document).ready(function () {
-        let url = "../images/pendu-" + nbCoups + ".png";
+        numeroImg++;
+        let url = "../images/pendu-" + numeroImg + ".png";
         $("img").attr("src", url);
         if (nbCoups == maxCoups) {
             defaite();
